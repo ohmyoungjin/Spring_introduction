@@ -22,7 +22,7 @@ class MemberServiceIntegrationTest {
 
     @BeforeEach
     public void beforeEach() {
-        MemberRepository memberRepository = new MemoryMemberRepository();
+        memberRepository = new MemoryMemberRepository();
         memberService = new MemberService(memberRepository);
     }
 
@@ -30,7 +30,7 @@ class MemberServiceIntegrationTest {
     void 회원가입() {
         //given
         Member member = new Member();
-        member.setName("spring");
+        member.setName("spring1");
 
         //when
         Long saveId = memberService.join(member);
