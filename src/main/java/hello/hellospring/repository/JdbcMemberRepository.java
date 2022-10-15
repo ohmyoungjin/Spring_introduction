@@ -3,11 +3,11 @@ import hello.hellospring.domain.Member;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 public class JdbcMemberRepository implements MemberRepository {
     private final DataSource dataSource;
+    private static Map<Long, Member> store = new HashMap<>();
     public JdbcMemberRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -108,6 +108,10 @@ public class JdbcMemberRepository implements MemberRepository {
         } finally {
             close(conn, pstmt, rs);
         }
+    }
+    @Override
+    public void clearStore(){
+        store.clear();
     }
     private Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
