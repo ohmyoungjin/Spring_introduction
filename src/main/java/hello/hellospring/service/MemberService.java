@@ -10,12 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
+//annotation을 지정을 해줘야 spring container에 올라가게 되고 관리 된다.
+
 public class MemberService {
 
     private final MemberRepository memberRepository ;
 
 
+    //내가 어떤 구현체를 주입 받을건지 정의해주는 부분
+    //필드 주입 , 생성자 주입 , setter 주입 세 가지가 있는데 이 중 생성자 주입이 제일 많이 사용 된다. setter 주입 같은 경우 public으로 선언을 해서 모든 사람들이 접근이 가능하게 돼서 사용하지 않음
     public MemberService(MemberRepository memberRepository) {
 
         this.memberRepository = memberRepository;
