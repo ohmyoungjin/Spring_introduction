@@ -11,28 +11,33 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-   /* private final DataSource dataSource;
-    @Autowired
-    public SpringConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }*/
-    private EntityManager em;
+    /* DB env 생성자로 받아서 가지고 오는 로직 부분
+       private final DataSource dataSource;
+        @Autowired
+        public SpringConfig(DataSource dataSource) {
+            this.dataSource = dataSource;
+        }*/
+    /* JPA 사용할 때는 EntityManager를 설정해줘야 한다 ( DB 정보를 주입해주는 부분)
+   private EntityManager em;
 
     @Autowired
     public SpringConfig(EntityManager em) {
         this.em = em;
+    }*/
+    private final MemberRepository memberRepository;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
-
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository() {
+//    @Bean
+//    public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
 //        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
-    }
+//        return new JpaMemberRepository(em);
+//    }
 }

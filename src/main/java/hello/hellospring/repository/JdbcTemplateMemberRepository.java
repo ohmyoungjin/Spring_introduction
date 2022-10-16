@@ -43,10 +43,10 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
         List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(), name);
         return result.stream().findAny();
     }
-    @Override
-    public void clearStore(){
-
-    }
+//    @Override
+//    public void clearStore(){
+//
+//    }
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
             Member member = new Member();

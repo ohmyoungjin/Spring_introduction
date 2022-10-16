@@ -109,10 +109,10 @@ public class JdbcMemberRepository implements MemberRepository {
             close(conn, pstmt, rs);
         }
     }
-    @Override
-    public void clearStore(){
-        store.clear();
-    }
+//    @Override
+//    public void clearStore(){
+//        store.clear();
+//    }
     private Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
     }
